@@ -51,7 +51,7 @@ Two ports will be listed as the output:
     80/tcp -> 0.0.0.0:32770  
     ```
 
-4.	In a web browser, navigate to http://`<IP_Address>`:port using the local host IP address of your machine and the port mapped to 80/tcp from the previous step (i.e. 32770).
+4.	In a web browser, navigate to http://`<IP_Address>`:port using the host IP address of the lab machine and the port mapped to 80/tcp from the previous step (i.e. 32770).
 
 7.	Configure WordPress with the following credentials:  
     `Username: root`  
