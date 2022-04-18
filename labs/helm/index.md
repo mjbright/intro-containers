@@ -61,7 +61,7 @@ As described in the slides the main files we are interested in are:
 	* values.yaml
 		* Default values used in Kubernetes manifest templates. 
 
-## Deploy `demo-app`
+## Deploy demo-app
 When you run `helm create demo-app` it will create a default chart to deploy `nginx`. 
 
 Deploy chart 
