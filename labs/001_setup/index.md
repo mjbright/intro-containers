@@ -1,4 +1,7 @@
 # Lab Setup 
+
+The username for SSH is `ubuntu`
+
 ## MacOS 
 Download `lab.pem` from the `keys` directory
 
@@ -8,7 +11,6 @@ chmod 600 /path/to/lab.pem
 ```
 
 ### SSH to lab servers 
-The username for SSH is `ubuntu`
 ```
 ssh -i /path/to/lab.pem ubuntu@<LAB IP> 
 ```
@@ -18,7 +20,7 @@ ssh -i /path/to/lab.pem ubuntu@<LAB IP>
 Download `lab.ppk` from `keys` directory
 
 Open Putty and configure a new session. 
-  
+
 ![](index/C4EC1E64-175D-4C84-8C49-D938337FA35A.png)
 
 Expand “Connection_SSH_Auth and then specify the PPK file 
