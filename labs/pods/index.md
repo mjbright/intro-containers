@@ -131,7 +131,7 @@ root         8  0.0  0.0   3868  3244 pts/0    Ss   05:49   0:00 bash
 root       338  0.0  0.0   7640  2672 pts/0    R+   05:49   0:00 ps aux
 ```
 
-6. Install `cur` inside the container
+6. Install `curl` inside the container
 ```
 apt install -y curl 
 ```
