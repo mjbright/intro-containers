@@ -8,17 +8,17 @@ This site includes the labs for the Introduction to Containers class.
 
 ### Day 1 - Docker
 Lab 1: [Images](labs/images/)   
-Lab 2: [Networking](labs/networking/) (optional)    
-Lab 3: [Optimizing Dockerfiles](labs/adv-dockerfile/)   
+Lab 2: [Optimizing Dockerfiles](labs/adv-dockerfile/)   
+Lab 3: [Docker Networking](labs/networking/) (optional)    
 
-### Day 1 - Kubernetes
 [Setup Kubernetes Cluster](labs/setup-kube)   
-Lab 1: [Get familiar with Kubectl](labs/commands/)    
-Lab 2: [Pods](labs/pods/)    
-Lab 3: [Deployments](labs/deployments/)     
+Lab 4: [Get familiar with Kubectl](labs/commands/)    
+Lab 5: [Pods](labs/pods/)    
+Lab 6: [Deployments](labs/deployments/)     
 
 ### Day 2 - Kubernetes
-Lab 4: [Scheduling](labs/scheduling/)  
-Lab 5: [ConfigMap](labs/configmap/)  
-Lab 6: [Secrets](labs/secrets/)  
-Lab 7: [Helm](https://gist.github.com/jruels/c27aa12b3031e728dfcaf1a236f1ca85)  
+Lab 7: [Scheduling](labs/scheduling/)  
+Lab 8: [ConfigMap](labs/configmap/)  
+Lab 9: [Secrets](labs/secrets/)  
+Lab 10: [Helm](https://gist.github.com/mjbright/e05e6f88e859a017e99c578b0847c326)  
+
