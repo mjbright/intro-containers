@@ -276,28 +276,6 @@ Delete the deployment
 kubectl delete -f manifests/pod-affinity.yaml
 ```
 
-## Multi-zone Affinity
-For a cluster that spans multiple zones you can use labels to schedule your apps into the same zone, or different zones. 
-
-Look at one of the node's labels and you will find `failure-domain.beta.kubernetes.io/zone`
-
-Now update the `pod-affinity.yaml` file so that `topologykey` is: 
-```
-topologyKey: "failure-domain.beta.kubernetes.io/zone" 
-```
-
-Redeploy and you will see the Pods are scheduled onto one node because each node in our cluster is in a different zone.
-
-You can also scale replicas to 5
-```
-kubectl scale --replicas=5 deployment/pod-affinity-2
-```
-
-Confirm Pods are scheduled correctly. 
-```
-kubectl get pods -o wide 
-```
-
 ## Cleanup 
 Delete the deployments 
 ```
