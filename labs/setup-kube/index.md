@@ -19,7 +19,7 @@ echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/
 Now that you've added the repository install the packages
 ```
 apt-get update
-apt-get install -y kubelet=1.20.2-00 kubeadm=1.20.2-00 kubectl
+apt-get install -y kubelet kubeadm kubectl
 ```
 
 The kubelet is now restarting every few seconds, as it waits in a `crashloop` for `kubeadm` to tell it what to do.
@@ -27,7 +27,7 @@ The kubelet is now restarting every few seconds, as it waits in a `crashloop` fo
 ### Initialize the Master 
 Run the following command on the master node to initialize 
 ```
-kubeadm init --kubernetes-version=1.20.2 --ignore-preflight-errors=all
+kubeadm init --kubernetes-version --ignore-preflight-errors=all
 ```
 
 If everything was successful output will contain 
