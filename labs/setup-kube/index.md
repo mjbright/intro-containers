@@ -93,7 +93,7 @@ kubectl get pods -n kube-system
 ### Join nodes to cluster 
 Log into each of the worker nodes and run the join command from `kubeadm init` master output. 
 ```
-sudo kubeadm join <command from kubeadm init output> --ignore-preflight-errors=all
+sudo kubeadm join <command from kubeadm init output> --ignore-preflight-errors=all --cri-socket=unix:///var/run/cri-dockerd.sock
 ```
 
 To confirm nodes have joined successfully log back into master and run 
