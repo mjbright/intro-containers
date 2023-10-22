@@ -39,20 +39,20 @@ dpkg -i cri-dockerd_0.3.6.3-0.ubuntu-focal_amd64.deb
 
 Confirm the service is running 
 ```
-sudo systemctl status cri-docker
+systemctl status cri-docker
 ```
 
 If it is not running, execute the following 
 ```
-sudo systemctl start cri-docker 
-sudo systemctl enable cri-docker
+systemctl start cri-docker 
+systemctl enable cri-docker
 ```
 
 
 ### Initialize the Master 
 Run the following command on the master node to initialize 
 ```
-kubeadm init kubernetes-version=1.28.2 --ignore-preflight-errors=all --cri-socket=unix:///var/run/cri-dockerd.sock
+kubeadm init --kubernetes-version=1.28.2 --ignore-preflight-errors=all --cri-socket=unix:///var/run/cri-dockerd.sock
 ```
 
 If everything was successful output will contain 
