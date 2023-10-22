@@ -1,6 +1,7 @@
 # Install Kubernetes on AWS
 ## Install Kubernetes on all servers
 
+Run the following commands on **all** servers.
 Following commands must be run as the root user. To become root run: 
 ```
 sudo su - 
@@ -24,10 +25,34 @@ apt-get install -y kubelet kubeadm kubectl
 
 The kubelet is now restarting every few seconds, as it waits in a `crashloop` for `kubeadm` to tell it what to do.
 
+### Install the Docker CRI Shim
+Kubernetes requires a CRI compliant runtime, but Docker is not one by default. To get around this the community has developed a compatibility shim. 
+Download the `cri-dockerd` package 
+```
+wget https://github.com/Mirantis/cri-dockerd/releases/download/v0.3.6/cri-dockerd_0.3.6.3-0.ubuntu-focal_amd64.deb
+```
+
+Install the package
+```
+dpkg -i cri-dockerd_0.3.6.3-0.ubuntu-focal_amd64.deb
+```
+
+Confirm the service is running 
+```
+sudo systemctl status cri-docker
+```
+
+If it is not running, execute the following 
+```
+sudo systemctl start cri-docker 
+sudo systemctl enable cri-docker
+```
+
+
 ### Initialize the Master 
 Run the following command on the master node to initialize 
 ```
-kubeadm init kubernetes-version=1.28.2 --ignore-preflight-errors=all
+kubeadm init kubernetes-version=1.28.2 --ignore-preflight-errors=all --cri-socket=unix:///var/run/cri-dockerd.sock
 ```
 
 If everything was successful output will contain 
