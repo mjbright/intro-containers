@@ -9,18 +9,21 @@ sudo su -
 
 Install packages required for Kubernetes on all servers as the root user
 ```
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+# If the folder `/etc/apt/keyrings` does not exist, it should be created before the curl command, read the note below.
+# sudo mkdir -p -m 755 /etc/apt/keyrings
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 ```
 
 Create Kubernetes repository by running the following as one command.
 ```
-echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 ```
 
 Now that you've added the repository install the packages
 ```
-apt-get update
-apt-get install -y kubelet kubeadm kubectl
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl
 ```
 
 The kubelet is now restarting every few seconds, as it waits in a `crashloop` for `kubeadm` to tell it what to do.
@@ -29,12 +32,12 @@ The kubelet is now restarting every few seconds, as it waits in a `crashloop` fo
 Kubernetes requires a CRI compliant runtime, but Docker is not one by default. To get around this the community has developed a compatibility shim. 
 Download the `cri-dockerd` package 
 ```
-wget https://github.com/Mirantis/cri-dockerd/releases/download/v0.3.6/cri-dockerd_0.3.6.3-0.ubuntu-focal_amd64.deb
+wget https://github.com/Mirantis/cri-dockerd/releases/download/v0.3.11/cri-dockerd_0.3.6.3-0.ubuntu-focal_amd64.deb
 ```
 
 Install the package
 ```
-dpkg -i cri-dockerd_0.3.6.3-0.ubuntu-focal_amd64.deb
+dpkg -i cri-dockerd_0.3.6.11-0.ubuntu-focal_amd64.deb
 ```
 
 Confirm the service is running 
@@ -52,7 +55,7 @@ systemctl enable cri-docker
 ### Initialize the Master 
 Run the following command on the master node to initialize 
 ```
-kubeadm init --kubernetes-version=1.28.2 --ignore-preflight-errors=all --cri-socket=unix:///var/run/cri-dockerd.sock
+kubeadm init --ignore-preflight-errors=all --cri-socket=unix:///var/run/cri-dockerd.sock
 ```
 
 If everything was successful output will contain 
