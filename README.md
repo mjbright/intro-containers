@@ -20,5 +20,4 @@ Lab 6: [Deployments](labs/deployments/)
 Lab 7: [Scheduling](labs/scheduling/)  
 Lab 8: [ConfigMap](labs/configmap/)  
 Lab 9: [Secrets](labs/secrets/)  
-Lab 10: [Helm](https://gist.github.com/mjbright/e05e6f88e859a017e99c578b0847c326)  
-
+Lab 10: [Helm](labs/helm)

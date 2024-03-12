@@ -32,12 +32,12 @@ The kubelet is now restarting every few seconds, as it waits in a `crashloop` fo
 Kubernetes requires a CRI compliant runtime, but Docker is not one by default. To get around this the community has developed a compatibility shim. 
 Download the `cri-dockerd` package 
 ```
-wget https://github.com/Mirantis/cri-dockerd/releases/download/v0.3.11/cri-dockerd_0.3.6.3-0.ubuntu-focal_amd64.deb
+wget https://github.com/Mirantis/cri-dockerd/releases/download/v0.3.11/cri-dockerd_0.3.11.3-0.ubuntu-jammy_amd64.deb
 ```
 
 Install the package
 ```
-dpkg -i cri-dockerd_0.3.6.11-0.ubuntu-focal_amd64.deb
+dpkg -i cri-dockerd_0.3.11.3-0.ubuntu-jammy_amd64.deb
 ```
 
 Confirm the service is running 

@@ -14,7 +14,7 @@ ip-192-168-92-129.us-east-2.compute.internal   Ready    <none>   66m   v1.20.10-
 ```
 
 
-Set a label on the last node 
+Set a label on a node that doesn't have `control-plane` label
 ```
 kubectl label nodes <ip-192-168-92-129.us-east-2.compute.internal> disktype=ssd
 ```
@@ -25,6 +25,13 @@ kubectl get nodes --show-labels
 ```
 
 Review YAML. Notice the `nodeSelector`
+
+```bash
+vim manifests/ssd_pod.yaml
+```
+
+
+
 ```
 apiVersion: v1
 kind: Pod
@@ -79,7 +86,7 @@ NAME                             READY   STATUS    RESTARTS   AGE   IP          
 node-affinity-589d989958-9q668   1/1     Running   0          1m    100.96.1.15   ip-172-20-55-161.us-west-1.compute.internal   <none>
 node-affinity-589d989958-q7qhh   1/1     Running   0          1m    100.96.1.14   ip-172-20-55-161.us-west-1.compute.internal   <none>
 node-affinity-589d989958-tnvlq   1/1     Running   0          1m    100.96.1.13   ip-172-20-55-161.us-west-1.compute.internal   <none>
-``` 
+```
 
 ## Cleanup
 ```
@@ -94,10 +101,10 @@ Kubernetes has built-in node labels that can be used without being applied manua
 Interpod Affinity and AntiAffinity can be even more useful when they are used with higher level collections such as ReplicaSets, Statefulsets, Deployments, etc. One can easily configure that a set of workloads should be co-located in the same defined topology, eg., the same node.
 
 ## Always co-located on the same node
-#### Allow workloads to run on Master node.
-Prior to this lab we must remove the taint from the master so that workloads can run on it.
+#### Allow workloads to run on control plane node.
+Prior to this lab we must remove the taint from the control plane so that workloads can run on it.
 ```
-kubectl taint nodes --all node-role.kubernetes.io/master-
+kubectl taint nodes --all node-role.kubernetes.io/control-plane-
 ```
 
 In a three node cluster, a web application has in-memory cache such as redis. We want the web-servers to be co-located with the cache as much as possible. Here is the yaml snippet of a simple redis deployment with three replicas and selector label `app=store`. The deployment has `PodAntiAffinity` configured to ensure the scheduler does not co-locate replicas on a single node.
@@ -465,7 +472,7 @@ kubectl apply -f manifests/nginx_taint.yaml
 Now confirm only PODs in deployment  `nginx-taint` are running on tainted node. 
 ```
 kubectl get pods -o wide 
-``` 
+```
 
 You should see that PODs in deployment `nginx-deployment` are NOT scheduled on tainted node. 
 

@@ -41,12 +41,12 @@ kubectl get pods
 
 7. Get information about Pod in `json` format 
 ```
-kubectl get pod nginx-pod-lab-<name> -o json 
-``` 
+kubectl get pod nginx-pod-lab -o json 
+```
 
 8. Now get info about it in `YAML` syntax
 ```
-kubectl get pod nginx-pod-lab-<name> -o yaml
+kubectl get pod nginx-pod-lab -o yaml
 ```
 
 9. Delete everything! 
@@ -165,14 +165,28 @@ kubectl get pods
 Sample output:
 ```
 NAME                            READY   STATUS    RESTARTS   AGE
-nginx-pod-lab-6b47f84ff-t9qzk   1/1     Running   0          42m
+nginx-pod-lab                   1/1     Running   0          42m
 nginx-web                       1/1     Running   0          23m
-two-containers                  1/2     Running   0          16m
+two-containers                  1/2     NotReady  0          16m
 ```
 
 3. Log into the new MySQL container: 
 ```
-kubectl exec -it <mysql-pod-name> -- mysql -ppassword
+kubectl exec -it mysql-demo -- mysql -ppassword
 ```
+
+
+
+## Cleanup everything
+
+Run the following to delete all the resources
+
+```bash
+kubectl delete pods --all
+```
+
+
+
+
 
 ## Lab complete

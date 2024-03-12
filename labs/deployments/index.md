@@ -183,9 +183,9 @@ Confirm the version of the image you are using
 kubectl describe deployment frontend |grep Image
 ```
 
-You should see `v4`
+You should see `15`
 ```
-Image:      gcr.io/google-samples/gb-frontend:v4
+Image:      sathishc58/gb-frontend:15
 ```
 
 Now we are going to update our YAML file 
@@ -193,11 +193,11 @@ Now we are going to update our YAML file
 vim manifests/frontend-deployment.yaml
 ```
 
-Replace `v4` with `v5` so it looks like below:
+Replace `15` with `16` so it looks like below:
 ```
 ..snip
 - name: php-redis
-        image: gcr.io/google-samples/gb-frontend:v5
+        image: sathishc58/gb-frontend:16
 ```
 
 Now save the file and deploy the new version 
@@ -223,14 +223,14 @@ redis-slave-b58dc4644-crbfs     1/1       Running             0          10m
 redis-slave-b58dc4644-htwkm     1/1       Running             0          10m
 ```
 
-Great!  Now you can confirm it updated to `v5`
+Great!  Now you can confirm it updated to `16`
 ```
 kubectl describe deployment frontend | grep Image
 ```
 
-Now that you're successfully running `v5`  update the YAML file to `v6` and deploy it.  Do not forget to use `--record`
+Now that you're successfully running `16`  update the YAML file to `17` and deploy it.  Do not forget to use `--record`
 
-After the update has completed confirm it is running `v6`
+After the update has completed confirm it is running `17`
 ```
 kubectl describe deployment frontend | grep Image
 ```

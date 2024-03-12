@@ -21,9 +21,24 @@ export VERIFY_CHECKSUM=false
 curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 ```
 
-Helm  simplifies installing, managing, updating and removing applications on your Kubernetes cluster. 
 
-To search the 'artifact repo' for a chart you can simply run `helm search hub package`, for example if you want to search for wordpress run:
+
+## Steps to find a Helm chart
+
+We will search for the WordPress chart - but we will not install it.
+
+We can search the artifacthub site for charts of interest, e.g. WordPress
+- go to https://artifacthub.io/
+- in the *search* box ("*Search Packages*) enter WordPress, then press the Enter key
+- you will be presented with a series of available matching charts
+- click on the Bitnami chart (ORG: Bitnami REPO: Bitnami)
+- you will presented with a page describing the chart
+- clicking on the *Install* button on the top left will show the necessary commands to
+  - add the appropriate chart repo
+  - install the chart to install WordPress
+
+You can also search using the command line.
+
 ```
 helm search hub wordpress
 ```
@@ -66,7 +81,7 @@ When you run `helm create demo-app` it will create a default chart to deploy `ng
 
 Deploy chart 
 ```
-helm install demo-app ./demo-app --set service.type=LoadBalancer
+helm install demo-app ./demo-app --set service.type=NodePort
 ```
 
 Now confirm the chart was deployed successfully. 
@@ -87,7 +102,7 @@ Now confirm everything is running:
 Check that Pods are running:
 ```
 kubectl get pods -l app.kubernetes.io/name=demo-app
-``` 
+```
 
 You should see one replica running 
 ```
@@ -136,6 +151,7 @@ Now in `demo-app/values.yaml` update the following values:
 * image.tag: the tag of the Docker image we want to deploy
 * service.type: we change it to NodePort instead of ClusterIP in order to expose it outside our cluster
 * service.port: we set it to 8080, the port our application is using
+* Remove `livenessProbe`and `readinessProbe`
 
 
 The `values.yaml` has the following content after our changes
@@ -148,6 +164,23 @@ service:
     type: NodePort
     port: 8080
 ```
+
+
+
+Remove the following from `values.yaml`
+
+```yaml
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+```
+
+
 
 We also need to update `targetPort` in `demo-app/templates/service.yaml` so it will point to port we defined in `values.yaml`
 
@@ -235,11 +268,27 @@ helm-demo-app   NodePort   10.96.132.164   <none>        8080:30041/TCP   7m5s
 ```
 
 Now let's access our application 
+
+Run the commands from the `helm install` output
+
 ```
-curl http://$SERVICE_IP:8080/hello
+export NODE_PORT=$(kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services helm-demo-app)
+  export NODE_IP=$(kubectl get nodes --namespace default -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT
 ```
 
+
+
+Connect to the service
+
+```
+curl http://$NODE_IP:$NODE_PORT/hello
+```
+
+
+
 Output should show the hostname of the Pod we connected to. 
+
 ```
 Hello Kubernetes! From host: helm-demo-app-5f84b5b8c6-jkqkh/10.36.0.1
 ```
@@ -270,7 +319,7 @@ Check the information for our deployed chart
 helm ls 
 ```
 
-You will now see there are 2 revisions and we are running chart `helm-demo-app-0.2.0` 
+You will now see there are 2 revisions, and we are running chart `helm-demo-app-0.2.0` 
 
 ```
 NAME         	REVISION	UPDATED                 	STATUS  	CHART              	APP VERSION	NAMESPACE
