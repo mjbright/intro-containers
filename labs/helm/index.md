@@ -193,21 +193,6 @@ spec:
           targetPort: {% raw %} {{ .Values.service.port }} {% endraw %}
 ```
 
-We now need to update `demo-app/templates/deployment.yaml` and remove the `liveness` and `readiness` probe sections. 
-```yaml
-<snip..>
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
-<..snip>
-```
-
 ### Check syntax 
 Now we need to confirm the changes we made are valid
 
