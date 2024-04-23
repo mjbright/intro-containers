@@ -441,7 +441,7 @@ Edit `manifests/nginx_taint.yaml` and apply a toleration.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: nginx-taint
 spec:
   selector:
     matchLabels:
