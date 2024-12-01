@@ -44,6 +44,14 @@ cd
 
 ### Running Docker Scout
 
+#### Login to Docker Hub
+
+Note that you will be prompted to login to the Docker Hub before using Docker Scout.
+
+You can either
+- use the ```docker login``` command to login prior to launching Docker Scout
+- Use the login link provided by Docker Scout to allow login in your browser
+
 Run Docker Scout on the latest nginx image as follows:
 ```
 docker-scout cves nginx:latest
