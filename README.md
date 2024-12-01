@@ -11,6 +11,10 @@ Lab 1: [Images](labs/images/)
 Lab 2: [Optimizing Dockerfiles](labs/adv-dockerfile/)   
 Lab 3: [Docker Networking](labs/networking/) (optional)    
 
+[Utilizing Open-Source Tools for Optimization](labs/optimizing-images/)
+
+#### Kubernetes
+
 [Setup Kubernetes Cluster](labs/setup-kube)   
 Lab 4: [Get familiar with Kubectl](labs/commands/)    
 Lab 5: [Pods](labs/pods/)    
