@@ -57,12 +57,14 @@ Follow the link provided for one of the vulnerabilities to see the documentation
 ### Explore an older nginx image
 
 First view again just the summary line for this latest image using:
+
 ```trivy image nginx:latest |& grep Total:```
 
 Then compare this against an older nginx image, e.g.
+
 ```trivy image nginx:1.25 |& grep Total:```
 
-**Note:** You can see what image tags (versions) exist by searching for nginx on the Docker Hub - the following link shows those tags - [https://hub.docker.com/_/nginx](https://hub.docker.com/_/nginx) for the official nginx image
+**Note:** You can see what image tags (versions) exist by searching for nginx on the Docker Hub - the following link shows those tags [https://hub.docker.com/_/nginx](https://hub.docker.com/_/nginx) for the official nginx image
 
 Trivy is a very useful security tool - it's static scanning feature provides immensely useful information about the known vulnerabilities and their severity.
 
@@ -70,5 +72,5 @@ Trivy is a very useful security tool - it's static scanning feature provides imm
 
 Investigate some other images of interest
 - consider images used, or built in earlier labs
-- search for images of interest in the Docker Hub at https://hub.docker.com
+- search for images of interest in the Docker Hub at [https://hub.docker.com](https://hub.docker.com)
 
