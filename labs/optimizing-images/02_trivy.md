@@ -64,7 +64,7 @@ Then compare this against an older nginx image, e.g.
 
 ```trivy image nginx:1.25 |& grep Total:```
 
-**Note:** You can see what image tags (versions) exist by searching for nginx on the Docker Hub - the following link shows those tags [https://hub.docker.com/_/nginx](https://hub.docker.com/_/nginx) for the official nginx image
+**Note:** You can see what image tags (versions) exist by searching for nginx on the Docker Hub - the following link shows those tags <a href="https://hub.docker.com/_/nginx" /> https://hub.docker.com/_/nginx </a> for the official nginx image
 
 Trivy is a very useful security tool - it's static scanning feature provides immensely useful information about the known vulnerabilities and their severity.
 
