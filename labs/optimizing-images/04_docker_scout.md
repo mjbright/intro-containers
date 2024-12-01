@@ -1,3 +1,4 @@
+
 ## Scanning Images with 'Docker Scout'
 
 ```Docker Scout``` is an open source tool from Docker which provides security scanning capabilities for various artifacts including container images, OS packages and application dependencies
