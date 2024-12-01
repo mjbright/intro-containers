@@ -7,9 +7,9 @@ TUI: Textual User Interface - an interactive interface running in a text console
 
 ### Installing Dive
 
-The Dive Github Repository is at https://github.com/wagoodman/dive
+The Dive Github Repository is at [https://github.com/wagoodman/dive](https://github.com/wagoodman/dive)
 
-Dive is a single Go static binary which can be downloaded from the releases page at https://github.com/wagoodman/dive
+Dive is a single Go static binary which can be downloaded from the releases page at [https://github.com/wagoodman/dive](https://github.com/wagoodman/dive)
 
 ### Download the 0.12.0 Release tar archive
 
@@ -192,11 +192,11 @@ drwxr-xr-x         0:0     3.3 kB  │   │   ├── apt.conf.d
 
 2. Observe the image details
 
-Observe the details, such as wasted space/efficiency - see the description provided at the project home page at https://github.com/wagoodman/dive?tab=readme-ov-file#basic-features
+Observe the details, such as wasted space/efficiency - see the description provided at the project home page at [https://github.com/wagoodman/dive?tab=readme-ov-file#basic-features](https://github.com/wagoodman/dive?tab=readme-ov-file#basic-features)
 
 ### Extra: Investigate other images
 
 Investigate some other images of interest
 - consider images used, or built in earlier labs
-- search for images of interest in the Docker Hub at https://hub.docker.com
+- search for images of interest in the Docker Hub at [https://hub.docker.com](https://hub.docker.com)
 
